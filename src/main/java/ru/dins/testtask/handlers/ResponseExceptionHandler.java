@@ -21,7 +21,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = ConstraintViolationException.class)
     protected ResponseEntity<?> handleNotCorrect(Exception e, WebRequest request) {
-        return handleExceptionInternal(e, e.getMessage(),
+        return handleExceptionInternal(e, "The entered data is incorrect",
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }
