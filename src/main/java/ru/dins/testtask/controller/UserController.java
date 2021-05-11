@@ -1,9 +1,11 @@
 package ru.dins.testtask.controller;
 
+import ru.dins.testtask.model.Item;
 import ru.dins.testtask.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.dins.testtask.repository.ItemRepository;
 import ru.dins.testtask.repository.UserRepository;
 
 import javax.persistence.EntityNotFoundException;
@@ -15,6 +17,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
 
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
@@ -37,6 +42,8 @@ public class UserController {
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteUser(@RequestParam Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with id " + id + " not found"));
+        List<Item> items = itemRepository.findItemsByOwner(user);
+        itemRepository.deleteAll(items);
         userRepository.delete(user);
         return ResponseEntity.ok("User " + user.getName() + " successfully deleted");
     }
