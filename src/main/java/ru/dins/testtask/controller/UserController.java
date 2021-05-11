@@ -46,7 +46,7 @@ public class UserController {
         User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with id " + id + " not found"));
         user.setName(name);
         user = userRepository.save(user);
-        return ResponseEntity.ok("User with id " + user.getId() + " successfully updateed to " + user.getName());
+        return ResponseEntity.ok("User with id " + user.getId() + " successfully updated to " + user.getName());
     }
 
     @GetMapping("/find_by_name")
