@@ -11,6 +11,7 @@ import ru.dins.testtask.repository.UserRepository;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
