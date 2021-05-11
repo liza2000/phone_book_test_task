@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findItemsByPhoneNumber(String phoneNumber);
+
     List<Item> findItemsByOwner(User user);
 }

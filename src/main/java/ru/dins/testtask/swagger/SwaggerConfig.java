@@ -20,7 +20,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     private static final String API_VERSION = "0.0.1";
 
     @Bean
-    public Docket api(){
+    public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("ru.dins.testtask.controller"))
@@ -28,6 +28,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .build()
                 .apiInfo(apiInfo());
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")
@@ -36,15 +37,15 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfo(
-            "Телефонные книжки",
-            "Тестовое задание",
-            API_VERSION,
-            "Terms of service",
-            new Contact("Медведева Елизавета Игоревна", "github.com/liza2000", "medvedeva_elizaveta2000@mail.ru"),
-            "License of API",
-            "API license URL",
-            Collections.emptyList());
-}
+                "Телефонные книжки",
+                "Тестовое задание",
+                API_VERSION,
+                "Terms of service",
+                new Contact("Медведева Елизавета Игоревна", "github.com/liza2000", "medvedeva_elizaveta2000@mail.ru"),
+                "License of API",
+                "API license URL",
+                Collections.emptyList());
+    }
 }

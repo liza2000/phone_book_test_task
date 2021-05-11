@@ -26,14 +26,14 @@ public class Item {
     @Pattern(regexp = "^\\d{11}$", message = "Invalid phone number")
     String phoneNumber;
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     User owner;
 
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-        Set<ConstraintViolation<Item>> constraintViolations= validator.validate(this);
-       if(!constraintViolations.isEmpty())
-           throw new ConstraintViolationException(constraintViolations);
+        Set<ConstraintViolation<Item>> constraintViolations = validator.validate(this);
+        if (!constraintViolations.isEmpty())
+            throw new ConstraintViolationException(constraintViolations);
     }
 }
